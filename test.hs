@@ -3,15 +3,17 @@ import Control.Monad
 import Data.Aeson
 import Data.Text (Text(..), pack, unpack)
 import qualified Data.ByteString.Lazy as B
+import GHC.Generics (Generic)
+
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 data Pull = Pull {
     title :: Text
-    } deriving (Show)
+    } deriving (Show, Generic)
 
-instance FromJSON Pull where
-    parseJSON (Object v) =
-        Pull <$> v .: pack "title"
-    parseJSON _ = mzero
+instance FromJSON Pull
+instance ToJSON Pull
 
 main = do
     bstr <- (B.readFile "test.json")
