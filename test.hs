@@ -1,8 +1,8 @@
-import Control.Applicative ((<$>), (<*>))
 import Control.Monad
 import Data.Aeson
-import Data.Text (Text(..), pack, unpack)
 import qualified Data.ByteString.Lazy as B
+
+{- Generic Language extension -}
 import GHC.Generics (Generic)
 
 {-# LANGUAGE DeriveGeneric #-}
