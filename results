@@ -1,0 +1,3 @@
+./d-test > /dev/null  3.54s user 0.02s system 99% cpu 3.560 total
+./hs-test > /dev/null  0.02s user 0.00s system 93% cpu 0.023 total
+python test.py > /dev/null  0.77s user 0.02s system 99% cpu 0.792 total
