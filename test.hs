@@ -9,7 +9,7 @@ import GHC.Generics (Generic)
 {-# LANGUAGE OverloadedStrings #-}
 
 data Pull = Pull {
-    title :: Text
+    title :: String
     } deriving (Show, Generic)
 
 instance FromJSON Pull
@@ -17,8 +17,6 @@ instance ToJSON Pull
 
 main = do
     bstr <- (B.readFile "test.json")
-    case (decode bstr :: Maybe [Pull]) of
-        Just p -> mapM_
-            (putStrLn . unpack . title)
-            (concat $ take 100 $ repeat p)
-        Nothing -> putStr "nothing"
+    case decode bstr :: Maybe [Pull] of
+        Just p -> mapM_ (putStrLn . title) (concat $ take 100 $ repeat p)
+        Nothing -> putStr "can't parse test.json"
