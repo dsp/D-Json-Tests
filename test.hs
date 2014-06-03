@@ -17,6 +17,9 @@ instance ToJSON Pull
 
 main = do
     bstr <- (B.readFile "test.json")
-    case decode bstr :: Maybe [Pull] of
-        Just p -> mapM_ (putStrLn . title) (concat $ take 100 $ repeat p)
-        Nothing -> putStr "can't parse test.json"
+    mapM_ print (parsed bstr)
+    where
+        parsed bstr = map (\n -> decode bstr :: Maybe [Pull]) $ take 100 $ repeat 0
+        print d = case d of
+            Just p -> mapM_ (putStrLn . title) p
+            Nothing -> putStr "can't parse test.json"
